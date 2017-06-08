@@ -1,5 +1,5 @@
 <?php echo Form::open(array("class"=>"form-horizontal")); ?>
-
+<?php //if($current_user) $user = Model_User::find($current_user->id);?>
 <div class="col-md-12">
           <div class="nav-tabs-custom" style="box-shadow: 0px 0px 1px;">
             <ul class="nav nav-tabs">
@@ -7,6 +7,7 @@
               <li><a href="#secondaryInfo" data-toggle="tab">General Information</a></li>
               <li><a href="#additionalInfo" data-toggle="tab">Additional Information</a></li>
               <li><a href="#Networks" data-toggle="tab">Profile Networks</a></li>
+              <li><a href="#uploadGalleries" data-toggle="tab">Galleries</a></li>
               <li><a href="#professionalCard" data-toggle="tab">Professional Card</a></li>
             </ul>
             <div class="tab-content" style="max-width: 90%; margin-left: 5%">
@@ -63,7 +64,7 @@
 
 						<div class="form-group col-md-3">
 							<?php echo Form::label('Street', 'street', array('class'=>'control-label')); ?>
-								<?php echo Form::input('street', Input::post('street', isset($user) ? $user->street : ''), array('class' => 'col-md-4 form-control', 'placeholder'=>'Street')); ?>
+								<?php echo Form::input('street', Input::post('street', isset($user) ? $user->profile->street : ''), array('class' => 'col-md-4 form-control', 'placeholder'=>'Street')); ?>
 						</div>
 						<div class="col-md-1"></div>
 						<div class="form-group col-md-3">
@@ -162,6 +163,11 @@
 				</fieldset>
               </div>
 
+            <div class="tab-pane" id="uploadGalleries">
+            <br>
+	            <?php echo Request::forge('cropper/list/galleries')->execute(); ?>
+            </div>
+
 
               <div class="tab-pane" id="professionalCard">
               <br>
@@ -185,11 +191,11 @@
 
             </div>
             <!-- /.tab-content -->
-						<div class="form-group">
-							<label class='control-label'>&nbsp;</label>
-							<?php echo Form::submit('submit', 'Save', array('class' => 'btn btn-primary')); ?>		
-						</div>
-						<br>
+			<div class="form-group">
+				<label class='control-label'>&nbsp;</label>
+				<?php echo Form::submit('submit', 'Save', array('class' => 'btn btn-primary')); ?>		
+			</div>
+			<br>
           </div>
           <!-- /.nav-tabs-custom -->
         </div>

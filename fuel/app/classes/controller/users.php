@@ -163,4 +163,14 @@ class Controller_Users extends Controller_Base
 
 	}
 
+	public function action_set_profile_picture(){
+		$path = Input::Post('message');
+		$title = Input::Post('title');
+		@move_uploaded_file($path,'assets/users/'.$title);
+		$this->current_user->profile->profile_image = $title;
+		$output['status'] = 'success';
+		$output['message'] = 'Success';
+		return Format::forge($output)->to_json();
+	}
+
 }

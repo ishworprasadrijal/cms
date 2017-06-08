@@ -241,9 +241,9 @@ return array(
 	 *
 	 * Paths MUST end with a directory separator (the DS constant)!
 	 */
-	// 'module_paths' => array(
-	// 	//APPPATH.'modules'.DS
-	// ),
+	'module_paths' => array(
+		APPPATH.'modules'.DS
+	),
 
 	/**
 	 * To enable you to split up your additions to the framework, packages are
@@ -285,7 +285,7 @@ return array(
 		 *
 		 * A path must be set in module_paths for this to work.
 		 */
-		// 'modules'  => array(),
+		'modules'  => array('cropper'),
 
 		/**
 		 * Classes to autoload & initialize even when not used
@@ -312,5 +312,24 @@ return array(
 		 */
 		// 'language'  => array(),
 	),
+
+	'cropper'=>array(
+            'type'=>array(
+                    'default'=>array(
+                            'naming'=>array('CropperModule-','timestamp'),
+                            'size'=>array(600,400),
+                            'directory'=>'assets/media/',
+                            'thumbnail'=>true,
+                            'ps'=>'default',
+                        ),
+                    'galleries'=>array(
+                            'naming'=>array('ain_image-','timestamp'),
+                            'size'=>array(600,400),
+                            'directory'=>'assets/galleries',
+                            'thumbnail'=>true,
+                            'ps'=>'galleries',
+                        ),
+                )
+            )
 
 );

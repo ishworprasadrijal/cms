@@ -31,6 +31,16 @@ class Model_User extends Model
 		),
 	);
 
+	protected static $_has_one = array(
+	    'profile' => array(
+	        'key_from' => 'id',
+	        'model_to' => 'Model_Userprofile',
+	        'key_to' => 'user_id',
+	        'cascade_save' => true,
+	        'cascade_delete' => false,
+	    )
+	);
+
 	public static function validate($factory)
 	{
 		$val = Validation::forge($factory);

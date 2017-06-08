@@ -98,7 +98,7 @@ return array(
 		'#' =>
 				array(
 						'Controller_Welcome' =>	array(
-								'index','404',
+								'index','404','galleries',
 							),
 						'Controller_Admin' =>	array(
 								'login','logout',

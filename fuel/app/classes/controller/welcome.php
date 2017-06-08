@@ -60,4 +60,10 @@ class Controller_Welcome extends Controller_Base
 		$this->template->content=View::forge('welcome/404');
 		// return Response::forge(Presenter::forge('welcome/404'), 404);
 	}
+
+	public function action_galleries()
+	{
+		return View::forge('welcome/galleries');
+		// return Response::forge(Presenter::forge('welcome/404'), 404);
+	}
 }
