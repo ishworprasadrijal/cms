@@ -66,4 +66,21 @@ class Controller_Welcome extends Controller_Base
 		return View::forge('welcome/galleries');
 		// return Response::forge(Presenter::forge('welcome/404'), 404);
 	}
+
+	public static function action_autostyle($i=0){
+		switch($i%4){
+			case 0 :
+				return 'default'; break;
+			case 1 :
+				return 'info'; break;
+			case 2 :
+				return 'warning'; break;
+			case 3 :
+				return 'success'; break;
+			case 4 :
+				return 'danger'; break;
+			default:
+			return 'primary';
+		}
+	}
 }

@@ -1,4 +1,5 @@
   <!-- Left side column. contains the logo and sidebar -->
+  <?php /*
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
@@ -198,10 +199,11 @@
     </section>
     <!-- /.sidebar -->
   </aside>
-
+  */?>
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="-content-wrapper" style="background-color: #FFFFFF;">
     <!-- Content Header (Page header) -->
+    <?php /*
     <section class="content-header">
       <h1>
         User Profile
@@ -212,7 +214,7 @@
         <li class="active">User profile</li>
       </ol>
     </section>
-
+*/ ?>
     <!-- Main content -->
     <section class="content">
 
@@ -270,7 +272,9 @@
               <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
 
               <p>
-                <span class="label label-danger">UI Design</span>
+              <?php foreach(explode(',',$current_user->profile->skills) as $key=>$skill){ ?>
+                <span class="label label-<?=$autostyle($key);?>"><?=$skill?></span>
+              <?php } ?>
                 <span class="label label-success">Coding</span>
                 <span class="label label-info">Javascript</span>
                 <span class="label label-warning">PHP</span>

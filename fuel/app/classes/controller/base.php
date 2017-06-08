@@ -23,9 +23,15 @@ class Controller_Base extends Controller_Template
 		}
 
 		// Set a global variable so views can use it
-		View::set_global('current_user', $this->current_user);
-		View::set_global('current_controller', $this->request->controller);
-		View::set_global('current_action', $this->request->action);
+		View::set_global('current_user', $this->current_user,false);
+		View::set_global('current_controller', $this->request->controller,false);
+		View::set_global('current_action', $this->request->action,false);
+
+		/*closures*/
+		$autostyle = function($key){ return Controller_Welcome::action_autostyle($key);};
+		view::set_global('autostyle',$autostyle,false);
+
+
 		parent::before();
 	}
 
