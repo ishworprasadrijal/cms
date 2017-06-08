@@ -180,47 +180,42 @@ class Controller_Users extends Controller_Base
 	{
 		if (Input::method() == 'POST')
 		{
-			$val = Model_User::validate('create');
-
-			if ($val->run())
-			{
-				$username = Input::Post('username');
+				$street = Input::Post('street');
 				$first_name = Input::Post('first_name');
 				$middle_name = Input::Post('middle_name');
 				$last_name = Input::Post('last_name');
-				$email = Input::Post('email');
-				$password = Input::Post('password');
-				$confirm_password = Input::Post('confirm_password');
-				$gender = Input::Post('gender');
-				$group = Input::Post('group');
+				$postal_code = Input::Post('postal_code');
+				$zip_code = Input::Post('zip_code');
+				$city = Input::Post('city');
+				$state = Input::Post('state');
+				$country = Input::Post('country');
+				$education = Input::Post('education');
+				$designation = Input::Post('designation');
+				$experience = Input::Post('experience');
+				$skills = Input::Post('skills');
+				$background = Input::Post('background');
 
-				$current_user->first_name = $first_name;
-				$current_user->middle_name = $middle_name;
-				$current_user->last_name = $last_name;
+				$this->current_user->first_name = $first_name;
+				$this->current_user->middle_name = $middle_name;
+				$this->current_user->last_name = $last_name;
 				
-				$current_user->profile->street = $street;
-				$current_user->profile->postal_code = $postal_code;
-				$current_user->profile->zip_code = $zip_code;
-				$current_user->profile->city = $city;
-				$current_user->profile->state = $state;
-				$current_user->profile->country = $country;
-				$current_user->profile->designation = $designation;
-				$current_user->profile->education = $education;
-				$current_user->profile->experience = $experience;
-				$current_user->profile->skills = $skills;
-				$current_user->profile->background = $background;
+				$this->current_user->profile->street = $street;
+				$this->current_user->profile->postal_code = $postal_code;
+				$this->current_user->profile->zip_code = $zip_code;
+				$this->current_user->profile->city = $city;
+				$this->current_user->profile->state = $state;
+				$this->current_user->profile->country = $country;
+				$this->current_user->profile->designation = $designation;
+				$this->current_user->profile->education = $education;
+				$this->current_user->profile->experience = $experience;
+				$this->current_user->profile->skills = $skills;
+				$this->current_user->profile->background = $background;
 
-				if($current_user->save()){
+				if($this->current_user->save()){
 					Session::set_flash('success','User Registration Success.');
 					Response::redirect('admin');
 				}
-			}
-			else
-			{
-				Session::set_flash('error', $val->error());
-			}
 		}
-
 		$this->template->title = "Users";
 		$this->template->content = View::forge('users/create');
 

@@ -9,48 +9,23 @@ if(!empty($current_user)){
 <div class="col-md-12">
           <div class="nav-tabs-custom" style="box-shadow: 0px 0px 1px;">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#primaryInfo" data-toggle="tab">Primary Information</a></li>
               <?php if(!empty($current_user)){ ?>
-	              <li><a href="#secondaryInfo" data-toggle="tab">General Information</a></li>
+	              <li class="active"><a href="#generalInformation" data-toggle="tab">General Information</a></li>
 	              <li><a href="#additionalInfo" data-toggle="tab">Additional Information</a></li>
 	              <li><a href="#Networks" data-toggle="tab">Profile Networks</a></li>
 	              <li><a href="#uploadGalleries" data-toggle="tab">Galleries</a></li>
 	              <li><a href="#professionalCard" data-toggle="tab">Professional Card</a></li>
+              <?php }else{ ?>
+              	<li class="active"><a href="#primaryInfo" data-toggle="tab">Primary Information</a></li>
               <?php } ?>
+
             </ul>
             <div class="tab-content" style="max-width: 90%; margin-left: 5%">
-              <div class="active tab-pane" id="primaryInfo">
-              		<fieldset>
-						<div class="form-group">
-							<?php echo Form::label('Username', 'username', array('class'=>'control-label')); ?>
-								<?php echo Form::input('username', Input::post('username', isset($user) ? $user->username : ''), array('class' => 'col-md-4 form-control', 'placeholder'=>'Username')); ?>
-						</div>
-
-						<div class="form-group">
-							<?php echo Form::label('Password', 'password', array('class'=>'control-label')); ?>
-								<?php echo Form::password('password', Input::post('password', isset($user) ? $user->password : ''), array('class' => 'col-md-4 form-control', 'placeholder'=>'Password')); ?>
-						</div>
-
-						<div class="form-group">
-							<?php echo Form::label('Confirm Password', 'confirm_password', array('class'=>'control-label')); ?>
-								<?php echo Form::password('confirm_password', Input::post('confirm_password',''), array('class' => 'col-md-4 form-control', 'placeholder'=>'Confirm Password')); ?>
-						</div>
-
-						<div class="form-group">
-							<?php echo Form::label('Gender', 'gender', array('class'=>'control-label')); ?>
-								<?php echo Form::input('gender', Input::post('gender', isset($user) ? $user->gender : ''), array('class' => 'col-md-4 form-control', 'placeholder'=>'Gender')); ?>
-						</div>
-
-						<div class="form-group">
-							<?php echo Form::label('Email Address', 'email', array('class'=>'control-label')); ?>
-								<?php echo Form::input('email', Input::post('email', isset($user) ? $user->email : ''), array('class' => 'col-md-4 form-control', 'placeholder'=>'Email Address','required','type'=>'email')); ?>
-						</div>
-					</fieldset>
-              </div>
+              
               <!-- /.tab-pane -->
             <?php if(!empty($current_user)){ ?>
 
-	              <div class="tab-pane col-md-12" id="secondaryInfo">
+	              <div class="active tab-pane col-md-12" id="generalInformation">
 	              <br>
 	              	<fieldset>
 							<div class="form-group col-md-3">
@@ -201,6 +176,35 @@ if(!empty($current_user)){
 	              	</fieldset>
 	            </div>
 	            <!-- /.professional card -->
+            <?php }else{ ?>
+				<div class="active tab-pane" id="primaryInfo">
+              		<fieldset>
+						<div class="form-group">
+							<?php echo Form::label('Username', 'username', array('class'=>'control-label')); ?>
+								<?php echo Form::input('username', Input::post('username', isset($user) ? $user->username : ''), array('class' => 'col-md-4 form-control', 'placeholder'=>'Username')); ?>
+						</div>
+
+						<div class="form-group">
+							<?php echo Form::label('Password', 'password', array('class'=>'control-label')); ?>
+								<?php echo Form::password('password', Input::post('password', isset($user) ? $user->password : ''), array('class' => 'col-md-4 form-control', 'placeholder'=>'Password')); ?>
+						</div>
+
+						<div class="form-group">
+							<?php echo Form::label('Confirm Password', 'confirm_password', array('class'=>'control-label')); ?>
+								<?php echo Form::password('confirm_password', Input::post('confirm_password',''), array('class' => 'col-md-4 form-control', 'placeholder'=>'Confirm Password')); ?>
+						</div>
+
+						<div class="form-group">
+							<?php echo Form::label('Gender', 'gender', array('class'=>'control-label')); ?>
+								<?php echo Form::input('gender', Input::post('gender', isset($user) ? $user->gender : ''), array('class' => 'col-md-4 form-control', 'placeholder'=>'Gender')); ?>
+						</div>
+
+						<div class="form-group">
+							<?php echo Form::label('Email Address', 'email', array('class'=>'control-label')); ?>
+								<?php echo Form::input('email', Input::post('email', isset($user) ? $user->email : ''), array('class' => 'col-md-4 form-control', 'placeholder'=>'Email Address','required','type'=>'email')); ?>
+						</div>
+					</fieldset>
+              </div>
             <?php } ?>
             <!-- /.tab-content -->
 

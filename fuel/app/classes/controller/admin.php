@@ -55,7 +55,7 @@ class Controller_Admin extends Controller_Base
 								$current_user = Model\Auth_User::find($id[1]);
 								Session::set_flash('success', e('Welcome, '.$current_user->username));
 								View::set_global('settings', view::forge('users/register'));
-								Response::redirect('admin',$data);
+								Response::redirect('admin');
 							}
 						}
 					}

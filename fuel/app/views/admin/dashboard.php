@@ -226,7 +226,7 @@
 
               <h3 class="profile-username text-center"><?=$current_user->full_name();?></h3>
 
-              <p class="text-muted text-center">Software Engineer</p>
+              <p class="text-muted text-center"><?=$current_user->profile->designation;?></p>
 
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
@@ -256,14 +256,14 @@
               <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
 
               <p class="text-muted">
-                B.S. in Computer Science from the University of Tennessee at Knoxville
+                <?php echo $current_user->profile->education;?>
               </p>
 
               <hr>
 
               <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
 
-              <p class="text-muted">Malibu, California</p>
+              <p class="text-muted"><?=$current_user->profile->street.', '.$current_user->profile->postal_code.', '.$current_user->profile->city.', '.$current_user->profile->state.', '.$current_user->profile->country.'. '?></p>
 
               <hr>
 
@@ -281,7 +281,7 @@
 
               <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
 
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+              <p><?=$current_user->profile->background;?></p>
             </div>
             <!-- /.box-body -->
           </div>
@@ -508,6 +508,7 @@
               <!-- /.tab-pane -->
 
               <div class="tab-pane" id="settings">
+              <div class="row">
               <?php /*
                 <form class="form-horizontal">
                   <div class="form-group">
@@ -561,8 +562,9 @@
                   </div>
                 </form>
                 */
-                echo $settings;
+                echo view::forge('users/register');// $settings;
                 ?>
+              </div>
               </div>
               <!-- /.tab-pane -->
             </div>
