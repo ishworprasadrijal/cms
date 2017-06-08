@@ -57,6 +57,8 @@ class Controller_Users extends Controller_Base
 
 				$user = Model_User::find($id);
 				if($user){
+					$network = Model_Network::forge(array('user_id'=>$id));
+					$network->save();
 					$user->first_name = $first_name;
 					$user->middle_name = $middle_name;
 					$user->last_name = $last_name;
@@ -166,11 +168,63 @@ class Controller_Users extends Controller_Base
 	public function action_set_profile_picture(){
 		$path = Input::Post('message');
 		$title = Input::Post('title');
-		@move_uploaded_file($path,'assets/users/'.$title);
-		$this->current_user->profile->profile_image = $title;
+		Image::load($path)->crop_resize(200, 200)->save('assets/users/'.$title);
+		$this->current_user->profile->profile_picture = 'assets/users/'.$title;
+		$this->current_user->save();
 		$output['status'] = 'success';
 		$output['message'] = 'Success';
 		return Format::forge($output)->to_json();
 	}
+
+	public function action_update()
+	{
+		if (Input::method() == 'POST')
+		{
+			$val = Model_User::validate('create');
+
+			if ($val->run())
+			{
+				$username = Input::Post('username');
+				$first_name = Input::Post('first_name');
+				$middle_name = Input::Post('middle_name');
+				$last_name = Input::Post('last_name');
+				$email = Input::Post('email');
+				$password = Input::Post('password');
+				$confirm_password = Input::Post('confirm_password');
+				$gender = Input::Post('gender');
+				$group = Input::Post('group');
+
+				$current_user->first_name = $first_name;
+				$current_user->middle_name = $middle_name;
+				$current_user->last_name = $last_name;
+				
+				$current_user->profile->street = $street;
+				$current_user->profile->postal_code = $postal_code;
+				$current_user->profile->zip_code = $zip_code;
+				$current_user->profile->city = $city;
+				$current_user->profile->state = $state;
+				$current_user->profile->country = $country;
+				$current_user->profile->designation = $designation;
+				$current_user->profile->education = $education;
+				$current_user->profile->experience = $experience;
+				$current_user->profile->skills = $skills;
+				$current_user->profile->background = $background;
+
+				if($current_user->save()){
+					Session::set_flash('success','User Registration Success.');
+					Response::redirect('admin');
+				}
+			}
+			else
+			{
+				Session::set_flash('error', $val->error());
+			}
+		}
+
+		$this->template->title = "Users";
+		$this->template->content = View::forge('users/create');
+
+	}
+
 
 }

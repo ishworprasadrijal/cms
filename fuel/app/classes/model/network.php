@@ -1,26 +1,18 @@
 <?php
 use Orm\Model;
 
-class Model_Userprofile extends Model
+class Model_Network extends Model
 {
 	protected static $_properties = array(
 		'id',
 		'user_id',
-		'designation',
-		'street',
-		'city',
-		'postal_code',
-		'zip_code',
-		'state',
-		'country',
-		'paypal_email',
-		'profile_picture',
-		'cover_photo',
-		'education',
-		'experience',
-		'skills',
-		'background',
-		'status',
+		'facebook',
+		'twitter',
+		'linkedin',
+		'googleplus',
+		'skype',
+		'embed',
+		'website',
 		'created_at',
 		'updated_at',
 	);
@@ -34,6 +26,16 @@ class Model_Userprofile extends Model
 			'events' => array('before_save'),
 			'mysql_timestamp' => false,
 		),
+	);
+
+	protected static $_belongs_to = array(
+	    'user' => array(
+	        'key_from' => 'user_id',
+	        'model_to' => 'Model_User',
+	        'key_to' => 'id',
+	        'cascade_save' => true,
+	        'cascade_delete' => false,
+	    )
 	);
 
 }

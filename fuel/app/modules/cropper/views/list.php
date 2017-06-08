@@ -29,8 +29,3 @@
 		</label>
   	<input type="text" class='form-control' id="url" style="opacity: 0;">
 </div>
-<script>
-	$(document).on('click','.copy_clip',function(){
-		
-	})
-</script>

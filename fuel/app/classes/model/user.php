@@ -38,7 +38,14 @@ class Model_User extends Model
 	        'key_to' => 'user_id',
 	        'cascade_save' => true,
 	        'cascade_delete' => false,
-	    )
+	    ),
+	    'network' => array(
+	        'key_from' => 'id',
+	        'model_to' => 'Model_Network',
+	        'key_to' => 'user_id',
+	        'cascade_save' => true,
+	        'cascade_delete' => false,
+	    ),
 	);
 
 	public static function validate($factory)
@@ -52,6 +59,10 @@ class Model_User extends Model
 		$val->add_field('email', 'Email', 'required|valid_email|max_length[255]');
 
 		return $val;
+	}
+
+	public function full_name(){
+		return ucfirst($this->first_name).' '.ucfirst($this->middle_name).' '.ucfirst($this->last_name);
 	}
 
 }
