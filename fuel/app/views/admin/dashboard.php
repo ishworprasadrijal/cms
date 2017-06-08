@@ -508,6 +508,7 @@
               <!-- /.tab-pane -->
 
               <div class="tab-pane" id="settings">
+              <?php /*
                 <form class="form-horizontal">
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Name</label>
@@ -559,6 +560,9 @@
                     </div>
                   </div>
                 </form>
+                */
+                echo $settings;
+                ?>
               </div>
               <!-- /.tab-pane -->
             </div>

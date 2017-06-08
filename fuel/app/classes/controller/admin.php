@@ -54,7 +54,8 @@ class Controller_Admin extends Controller_Base
 								// credentials ok, go right in
 								$current_user = Model\Auth_User::find($id[1]);
 								Session::set_flash('success', e('Welcome, '.$current_user->username));
-								Response::redirect('admin');
+								View::set_global('settings', view::forge('users/register'));
+								Response::redirect('admin',$data);
 							}
 						}
 					}
@@ -97,6 +98,7 @@ class Controller_Admin extends Controller_Base
 		// var_dump($this->current_user);exit;
 		$this->template->title = 'Dashboard';
 		$this->template->content = View::forge('admin/dashboard');
+		View::set_global('settings', view::forge('users/register'));
 	}
 
 }
