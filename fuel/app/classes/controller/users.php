@@ -68,7 +68,7 @@ class Controller_Users extends Controller_Base
 						if($userprofile->save()){
 							if(Auth::login($username, $password)){
 								Session::set_flash('success','User Registration Success.');
-								Response::redirect('profile');
+								Response::redirect('admin');
 							}
 						}
 					}

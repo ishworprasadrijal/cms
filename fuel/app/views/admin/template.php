@@ -1,81 +1,74 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<title><?php echo $title; ?></title>
-	<?php echo Asset::css('bootstrap.css'); ?>
-	<style>
-		body { margin: 50px; }
-	</style>
-	<?php echo Asset::js(array(
-		'http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js',
-		'bootstrap.js',
-	)); ?>
-	<script>
-		$(function(){ $('.topbar').dropdown(); });
-	</script>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CMS</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <?php echo Asset::css(array('bootstrap.min.css','https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css','https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css','AdminLTE.min.css')); ?>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+      .color-palette {height: 35px;line-height: 35px;text-align: center;}
+      .color-palette-set {margin-bottom: 15px;}
+      .color-palette span {display: none;font-size: 12px;}
+      .color-palette:hover span {display: block;}
+      .color-palette-box h4 {position: absolute;top: 100%;left: 25px;margin-top: -40px;color: rgba(255, 255, 255, 0.8);      font-size: 12px;display: block;z-index: 7;}
+    </style>
+  </head>
 
-	<?php if ($current_user): ?>
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">My Site</a>
-			</div>
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li class="<?php echo Uri::segment(2) == '' ? 'active' : '' ?>">
-						<?php echo Html::anchor('admin', 'Dashboard') ?>
-					</li>
 
-					<?php
-						$files = new GlobIterator(APPPATH.'classes/controller/admin/*.php');
-						foreach($files as $file)
-						{
-							$section_segment = $file->getBasename('.php');
-							$section_title = Inflector::humanize($section_segment);
-							?>
-							<li class="<?php echo Uri::segment(2) == $section_segment ? 'active' : '' ?>">
-								<?php echo Html::anchor('admin/'.$section_segment, $section_title) ?>
-							</li>
-							<?php
-						}
-					?>
-				</ul>
-				<ul class="nav navbar-nav pull-right">
-					<li class="dropdown">
-						<a data-toggle="dropdown" class="dropdown-toggle" href="#"><?php echo $current_user->username ?> <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><?php echo Html::anchor('admin/logout', 'Logout') ?></li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<?php endif; ?>
 
-	<div class="container">
-		<div class="row">
-			<?=view::forge('elements/flash');?>
-			<div class="col-md-12">
-				<?php echo $content; ?>
-			</div>
-		</div>
-		<hr/>
-		<footer>
-			<p class="pull-right">Page rendered in {exec_time}s using {mem_usage}mb of memory.</p>
-			<p>
-				<a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.<br>
-				<small>Version: <?php echo e(Fuel::VERSION); ?></small>
-			</p>
-		</footer>
-	</div>
-</body>
+
+
+
+
+  <body class="hold-transition skin-blue sidebar-mini">
+
+
+
+    <div class="wrapper">
+        <br>
+          <?php echo view::forge('elements/flash'); ?>
+
+      <?php 
+        if(isset($current_user) && $current_user){
+          echo view::forge('elements/admin_header');
+        }else{ ?>
+        <div class="text-right" style="margin-right: 10px;">
+          <?php if($current_action !='login' && empty($current_user)){ ?>
+            <a href="<?=Uri::Create('admin/login');?>" class="btn btn-default btn-sm">login</a>
+            <?php }else if(!empty($current_user)){ ?>
+            <a href="<?=Uri::Create('admin/logout');?>" class="btn btn-default btn-sm">logout</a>
+            <?php } ?>
+          <a href="<?=Uri::Create('register');?>" class="btn btn-default btn-sm">Register</a>
+        </div>
+        <div class="clearfix"></div>
+        <br>
+        <?php }
+      ?>
+
+
+      <div class="content">
+      <?php echo $content; ?>
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+
+      <?php echo Asset::js(array('../plugins/jQuery/jquery-2.2.3.min.js','bootstrap.min.js','../plugins/fastclick/fastclick.js','app.min.js','demo.js')); ?>
+      <script type="text/javascript">
+      $('img').error(function(){
+                $(this).attr('src', 'http://via.placeholder.com/350x150');
+        });
+      </script>
+  </body>
 </html>

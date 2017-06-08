@@ -35,7 +35,7 @@ class Model_User extends Model
 	{
 		$val = Validation::forge($factory);
 		$val->add_field('username', 'Username', 'required|max_length[50]');
-		$val->add_field('first_name', 'First Name', 'required|max_length[50]');
+		// $val->add_field('first_name', 'First Name', 'required|max_length[50]');
 		$val->add_field('gender', 'Gender', 'required');
 		$val->add_field('password', 'Password', 'required|max_length[255]');
 		$val->add_field('confirm_password', 'Confirm Password', 'required|match_field[password]');
