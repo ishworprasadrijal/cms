@@ -160,7 +160,7 @@ if(!empty($current_user)){
 	              	<fieldset>
 	              	<div style="margin-left: 30%;">
 	              		<div class="card text-center" style="width: 30rem;border: 2px solid red; padding:10px;">
-	              		 <img class="card-img-top text-center" src="<?=Uri::create('assets/img/card.jpg');?>" alt="Card image cap" style="width:100%;">
+	              		 <img class="card-img-top text-center" src="<?=Uri::create($current_user->profile->profile_picture);?>" alt="Card image cap" style="width:100%;">
 	              		  <div class="card-block">
 	              		   <h4 class="card-title">Ishwor Prasad Rijal</h4>
 	              		    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
