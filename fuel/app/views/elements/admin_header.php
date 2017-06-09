@@ -21,6 +21,30 @@
           <!-- Messages: style can be found in dropdown.less-->
           <li class="dropdown messages-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-gears"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header alert alert-info">Super Admin Settings</li>
+              <li>
+                <ul class="menu">
+                  <li>
+                    <a href="<?=Uri::Create('admin/actions');?>">
+                      <div >Triggers</div>
+                    </a>
+                  </li>
+                  <!-- end message -->
+                </ul>
+              </li>
+              <li class="footer"><a href="#">See All Messages</a></li>
+            </ul>
+          </li>
+          <!-- /end of menus -->
+
+
+
+          <!-- Messages: style can be found in dropdown.less-->
+          <li class="dropdown messages-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-envelope-o"></i>
               <span class="label label-success">4</span>
             </a>

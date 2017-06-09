@@ -26,7 +26,7 @@
           height: 50px;
         }
     </style>
-<?php echo Asset::css(array('cropper.css'));?>
+  <?php echo Asset::css(array('cropper.css'));?>
   </head>
 
   <script>var base_url = "<?=Uri::base('/')?>";</script>
@@ -61,7 +61,7 @@
       ?>
 
 
-      <div class="content">
+      <div class="content container">
       <?php echo $content; ?>
       </div>
 
@@ -74,7 +74,7 @@
 
 
 
-      <?php echo Asset::js(array('../plugins/jQuery/jquery-2.2.3.min.js','bootstrap.min.js','../plugins/fastclick/fastclick.js','app.min.js','demo.js')); ?>
+      <?php echo Asset::js(array('../plugins/jQuery/jquery-2.2.3.min.js','bootstrap.min.js','../plugins/fastclick/fastclick.js','app.min.js','demo.js','ckeditor/ckeditor.js')); ?>
       <?php echo Asset::js(array('cropper.js','media.js','notifier.js'));?>
   </body>
 </html>
@@ -105,3 +105,8 @@
       </div>
     </div>
   </div>
+
+
+  <script>
+      // CKEDITOR.replace('description');
+  </script>

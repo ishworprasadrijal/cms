@@ -16,7 +16,16 @@
       .color-palette span {display: none;font-size: 12px;}
       .color-palette:hover span {display: block;}
       .color-palette-box h4 {position: absolute;top: 100%;left: 25px;margin-top: -40px;color: rgba(255, 255, 255, 0.8);      font-size: 12px;display: block;z-index: 7;}
+      .cropperModal img{
+        max-width: 100%;
+      }
+      .preview {
+          overflow: hidden;
+          width: 50px; 
+          height: 50px;
+        }
     </style>
+  <?php echo Asset::css(array('cropper.css'));?>
   </head>
 
 
@@ -65,6 +74,7 @@
 
 
       <?php echo Asset::js(array('../plugins/jQuery/jquery-2.2.3.min.js','bootstrap.min.js','../plugins/fastclick/fastclick.js','app.min.js','demo.js')); ?>
+      <?php echo Asset::js(array('cropper.js','media.js','notifier.js'));?>
       <script type="text/javascript">
       $('img').error(function(){
                 $(this).attr('src', 'http://via.placeholder.com/350x150');
@@ -72,3 +82,31 @@
       </script>
   </body>
 </html>
+
+
+
+<?/*==============================                
+   : cropper modal load everytime form template
+  ================================*/ ?>
+  <div class="modal fade bs-example-modal-lg cropperModal" id="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+         <div class="row">
+         <h2 class="col-md-4">Crop </h2>
+        </div>
+        </div>
+
+        <div class="modal-body">
+          <div class="img-container">
+            <img id="image" src="" alt="Picture">
+          </div>
+        </div>
+        <div class="modal-footer">
+              <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>
+              <button type="button" id="cropBtn" class="btn btn-primary btn-lg" data-dismiss="modal">Crop and upload </button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -69,6 +69,7 @@ class Controller_Users extends Controller_Base
 							));
 						if($userprofile->save()){
 							if(Auth::login($username, $password)){
+								$this->notify(1); //1=>Account Created
 								Session::set_flash('success','User Registration Success.');
 								Response::redirect('admin');
 							}
@@ -212,6 +213,7 @@ class Controller_Users extends Controller_Base
 				$this->current_user->profile->background = $background;
 
 				if($this->current_user->save()){
+					Model_Notification::notify(6,$this->current_user->id); //1=>Account Created
 					Session::set_flash('success','User Registration Success.');
 					Response::redirect('admin');
 				}

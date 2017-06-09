@@ -28,8 +28,8 @@ class Controller_Base extends Controller_Template
 		View::set_global('current_action', $this->request->action,false);
 
 		/*closures*/
-		$autostyle = function($key){ return Controller_Welcome::action_autostyle($key);};
-		view::set_global('autostyle',$autostyle,false);
+		$autostyle = function($key){ return Controller_Welcome::action_autostyle($key);}; $this->autostyle=$autostyle; view::set_global('autostyle',$autostyle,false);
+		$notify = function($key){ return Controller_Welcome::notify($key);}; $this->notify = $notify; view::set_global('notify',$notify,false);
 
 
 		parent::before();
